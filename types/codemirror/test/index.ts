@@ -159,3 +159,7 @@ const marks = myCodeMirror.getAllMarks();
 
 // $ExpectType TextMarker<MarkerRange | Position>
 const mark = marks[0];
+
+const mode = myCodeMirror.getMode();
+// $ExpectType ((state: any, textAfter: string, line: string) => number) | undefined
+mode.indent // CodeMirror's defaul null mode has no indent function

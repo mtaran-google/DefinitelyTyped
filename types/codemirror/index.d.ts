@@ -916,7 +916,7 @@ declare namespace CodeMirror {
 
         /** Gets the mode object for the editor. Note that this is distinct from getOption("mode"), which gives you the mode specification,
         rather than the resolved, instantiated mode object. */
-        getMode(): any;
+        getMode(): Mode<any>;
 
         /** Returns the preferred line separator string for this document, as per the option by the same name. When that option is null, the string "\n" is returned. */
         lineSeparator(): string;
@@ -1497,10 +1497,11 @@ declare namespace CodeMirror {
         copyState?: (state: T) => T;
 
         /**
-         * The indentation method should inspect the given state object, and optionally the textAfter string, which contains the text on
-         * the line that is being indented, and return an integer, the amount of spaces to indent.
+         * Returns the number of spaces of indentation that should be used if a newline were added after the given state. Optionally
+         * this can use the textAfter string (which is the text after the current position) or the line string, which is the whole
+         * text of the line.
          */
-        indent?: (state: T, textAfter: string) => number;
+        indent?: (state: T, textAfter: string, line: string) => number;
 
         /** The four below strings are used for working with the commenting addon. */
         /**
